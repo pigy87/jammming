@@ -22,7 +22,7 @@ class App extends React.Component {
             {
               name:'Holly mother',
               artist:'Brayan Adams',
-              album:'winter is comming',
+              album:'winter is commingg',
               id:2,
             }
           ],
