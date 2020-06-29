@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './searchResults.css';
 import  TrackList  from "../TrackList/tracklist";
 
 class SearchResults extends React.Component {
-    constructor(props){
-        super(props);
-    }
+    
     render() {
         return (
             <div className="SearchResults">
