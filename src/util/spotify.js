@@ -1,4 +1,4 @@
-import UsersPlaylists from "../components/UsersPlaylists/usersPlaylists";
+
 
 
 let clientId = "8a09172f383b4fce8193af6554cc1748";
@@ -14,7 +14,7 @@ const Spotify = {
     getAccessToken() {
 
         if (accessToken) {
-            console.log('toke vec imam');
+            
             return accessToken
         } else {
 
@@ -22,7 +22,7 @@ const Spotify = {
             const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
 
             if (accessTokenMatch && expiresInMatch) {
-                console.log('vadim token iz urla')
+               
                 accessToken = accessTokenMatch[1];
                 expiresIn = Number(expiresInMatch[1]);
 
@@ -150,7 +150,7 @@ const Spotify = {
         )
             .then(response => response.json())
             .then(jsonResponse => {
-                console.log(jsonResponse.items);
+                //console.log(jsonResponse.items);
                 return jsonResponse.items })
 
     }
