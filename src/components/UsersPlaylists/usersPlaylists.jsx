@@ -28,10 +28,11 @@ class UsersPlaylists extends Component {
             each.name = element.name;
             each.id = element.id
             objectOfPlayLists.push(each);
-            this.setState({ PlaylistArray: objectOfPlayLists })
+           
 
-        })
-        this.setState({ loading: false })
+        });
+        this.setState({ PlaylistArray: objectOfPlayLists });
+        this.setState({ loading: false });
 
     }
 
