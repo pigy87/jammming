@@ -133,11 +133,10 @@ const Spotify = {
     ,
     async getUserPlaylists () {
         const usersId=await Spotify.getCurrentUserId();
-        console.log(usersId)
         const accessToken =Spotify.getAccessToken();
        
 
-        return await fetch(`https://api.spotify.com/v1/users/${usersId}/playlists`,
+        let callPlaylists= await fetch(`https://api.spotify.com/v1/users/${usersId}/playlists`,
 
             {
                 method: "GET",
@@ -147,11 +146,9 @@ const Spotify = {
                 },
 
             }
-        )
-            .then(response => response.json())
-            .then(jsonResponse => {
-                //console.log(jsonResponse.items);
-                return jsonResponse.items })
+        );
+            let playLists= await callPlaylists.json();
+            return playLists.items
 
     }
 

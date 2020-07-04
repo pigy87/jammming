@@ -1,4 +1,4 @@
-.Playlist {
+.usersPlaylists {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,10 +14,17 @@
     color: #fff;
     font-family: 'Poppins', sans-serif;
     font-size: 1.55rem;
+    list-style: none;
 }
 
 @media only screen and (max-width: 1020px) {
-    .Playlist {
+    .usersPlaylists {
         width: 90%;
+    }
+    .lists {
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.55rem;
+        list-style: none;
     }
 }

@@ -92,14 +92,17 @@ class App extends React.Component {
                 <div className="App-playlist">
                   <SearchResults searchResults={this.state.searchResults}
                                   onAdd={this.addTrack}/>
+                  <UsersPlaylists/>                   
+                  
                   <PlayList playlistTracks={this.state.playlistTracks}
                             playlistName={this.state.playlistName}
                             onRemove={this.removeTrack}
                             onNameChange={this.updatePlaylistName}
                             onSave={this.savePlaylist}/>
-                  <div className="App-get-playlist">
-                      <UsersPlaylists/>
-                  </div>
+                             
+                 
+                  
+                  
                 </div>
               </div>
             </div>
