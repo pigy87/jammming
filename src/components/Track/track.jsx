@@ -28,20 +28,7 @@ class Track extends React.Component {
     this.props.onRemove(this.props.track)
   }
 
- /* componentDidMount(){
-    let minus = '-';
-    let plus = '+';
-    if (this.props.isRemoval) {
-      this.setState({
-        minOrPlus: minus
-      })
-    } else {
-      this.setState({
-        minOrPlus: plus
-      })
-    }
-  }
-*/
+ 
   
 
   render() {

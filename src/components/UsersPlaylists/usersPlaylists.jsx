@@ -13,40 +13,50 @@ class UsersPlaylists extends Component {
             loading: true
 
         }
-
-
+        this.handleClick=this.handleClick.bind(this)
+          
     }
 
 
-    async componentWillMount() {
+    componentWillMount() {
 
-        let playLists = await Spotify.getUserPlaylists();
+        Spotify.getUserPlaylists()
+            .then(usersPlaylists => {
 
-        let objectOfPlayLists = [];
-        playLists.forEach((element) => {
-            let each = {};
-            each.name = element.name;
-            each.id = element.id
-            objectOfPlayLists.push(each);
-           
-
-        });
-        this.setState({ PlaylistArray: objectOfPlayLists });
-        this.setState({ loading: false });
-
+                let objectOfPlayLists = [];
+                usersPlaylists.forEach((element) => {
+                    let each = {};
+                    each.name = element.name;
+                    each.id = element.id
+                    objectOfPlayLists.push(each);
+                });
+                this.setState({ PlaylistArray: objectOfPlayLists });
+                this.setState({ loading: false });
+            })
     }
 
+   
+    handleClick(e){
+       this.props.getPlaylistId(e.target.id)
+    }
 
 
     render() {
-
-
-        console.log(this.state.loading)
+        
         return (
             <div className={'usersPlaylists'}>
-                <PlayListItem items={this.state.PlaylistArray} />
+                <h2>Local Playlists</h2>
+                <ul className={'lists'}
+                    onClick={this.handleClick}>
+                {
+                 !this.state.PlaylistArray ? <p>Loading</p> : this.state.PlaylistArray.map(item=>{
+                   return <PlayListItem items={item}
+                                        key={item.id}/>
+                    })                     
+                }
+                </ul>
             </div>
-        );
+        )
     }
 
 }

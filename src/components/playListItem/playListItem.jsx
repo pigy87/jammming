@@ -2,22 +2,15 @@ import React, { Component } from 'react';
 //import  '../playListItem/playListItem.css'
 
 class PlayListItem extends Component {
-  
+
     render() {
+    // console.log(this.props.items)
         return (
             <div className={'playList'}>  
-                <h2>Local Playlists</h2>
-                <ul className={'lists'}>
+                               
                     {
-                      !this.props.items ? <p>Loading</p> : this.props.items.map(d => {
-                        return <li key={d.id}>{d.name}</li>
-            
-                        }) 
-                        
+                         <li id={`${this.props.items.id}`}>{this.props.items.name}</li>
                     }
-                </ul>
-
-                
             </div>
         );
     }
