@@ -29,7 +29,7 @@ class Playlist extends React.Component {
         <div className="Playlist">
         <input  id="play" 
                 type="text"
-                defaultValue={'New playlist'}
+                value={this.props.displayName}
                 onChange={this.handleNameChange}
                />
         <TrackList tracks={this.props.playlistTracks}
