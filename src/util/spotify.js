@@ -133,7 +133,7 @@ const Spotify = {
     ,
     async getUserPlaylists () {
         const usersId=await Spotify.getCurrentUserId();
-        console.log(usersId)
+        //console.log(usersId)
         const accessToken =Spotify.getAccessToken();
        
 
@@ -150,7 +150,7 @@ const Spotify = {
         )
             .then(response => response.json())
             .then(jsonResponse => {
-                //console.log(jsonResponse.items);
+               // console.log(jsonResponse.items[0].name);
                 return jsonResponse.items })
 
     }

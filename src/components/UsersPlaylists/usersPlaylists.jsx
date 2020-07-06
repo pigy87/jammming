@@ -8,40 +8,45 @@ class UsersPlaylists extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            PlaylistArray: []
+            PlaylistArray:null
         }
         
     }
 
 
 
-     componentWillMount() {
-        let objectOfPlayLists = [];
+    componentWillMount() {
+        let objectOfPlayLists=[];
 
         
          Spotify.getUserPlaylists()
             .then(arrayOfPl => {
-                console.log(arrayOfPl)
+                
+                console.log('dobio sam response')
+               
                 arrayOfPl.forEach(element => {
-                    let each = new Object();
+                    let each = {};
                     each.name = element.name;
                     each.id = element.id
                     objectOfPlayLists.push(each);
+                  
                 });
+                
             })
 
-        console.log(objectOfPlayLists);
+            console.log('setujem stanje'+objectOfPlayLists);
         this.setState({ PlaylistArray: objectOfPlayLists })
 
     }
 
+
     
     render() {
-
+        console.log(this.state.PlaylistArray);
 
 
         return (
-        <div></div>
+        <div><p>{this.state.PlaylistArray[0].name}</p></div>
         );
     }
     
