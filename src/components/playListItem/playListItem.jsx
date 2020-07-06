@@ -4,13 +4,15 @@ import React, { Component } from 'react';
 class PlayListItem extends Component {
 
     render() {
-    // console.log(this.props.items)
+        
+
+
         return (
-            <div className={'playList'}>  
-                               
-                    {
-                         <li id={`${this.props.items.id}`}>{this.props.items.name}</li>
-                    }
+            <div className={'playList'}>
+
+                {
+                    <li id={`${this.props.items.id}`}>{this.props.items.name}</li>
+                }
             </div>
         );
     }

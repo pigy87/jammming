@@ -60,21 +60,21 @@ const Spotify = {
             headers: { Authorization: `Bearer ${accessToken}` }
         })
 
-        .then(response => response.json())
+            .then(response => response.json())
 
-        .then(jsonResponse => {
-            if (!jsonResponse.tracks) {
-                return [];
-            } else {
-                return jsonResponse.tracks.items.map(track => ({
-                    id: track.id,
-                    name: track.name,
-                    artist: track.artists[0].name,
-                    album: track.album.name,
-                    uri: track.uri
-                }));
-            }
-        })
+            .then(jsonResponse => {
+                if (!jsonResponse.tracks) {
+                    return [];
+                } else {
+                    return jsonResponse.tracks.items.map(track => ({
+                        id: track.id,
+                        name: track.name,
+                        artist: track.artists[0].name,
+                        album: track.album.name,
+                        uri: track.uri
+                    }));
+                }
+            })
 
 
 
@@ -82,26 +82,37 @@ const Spotify = {
 
 
 
-    async savePlaylist(name, trackUris,id) {
+    async savePlaylist(name, trackUris, id) {
 
-        if (!name || !trackUris ) {
+        if (!name || !trackUris) {
             return
         }
         const usersId = await Spotify.getCurrentUserId();
         const accessToken = Spotify.getAccessToken();
         //const headers = { headers: { 'Authorization': `Bearer ${accessToken}` } };
 
+        if (id !== null) {
+             fetch(`https://api.spotify.com/v1/users/${usersId}/playlists/${id}/tracks`, {
+                method: "PUT",
+                headers: { Authorization: `Bearer ${accessToken}` },
+                body: JSON.stringify({ uris: trackUris })
+            })
+            return
+        }
+
         return fetch(`https://api.spotify.com/v1/users/${usersId}/playlists`,
 
-                {
-                    method: "POST",
-                    headers: { Authorization: `Bearer ${accessToken}` },
-                    body: JSON.stringify({ name: name }),
-                }
-            )
+            {
+                method: "POST",
+                headers: { Authorization: `Bearer ${accessToken}` },
+                body: JSON.stringify({ name: name }),
+            }
+        )
             .then(response => response.json())
             .then(jsonResponse => {
                 const playlistID = jsonResponse.id;
+
+
 
                 return fetch(`https://api.spotify.com/v1/users/${usersId}/playlists/${playlistID}/tracks`, {
                     method: "POST",
@@ -127,14 +138,14 @@ const Spotify = {
                 const accessToken = Spotify.getAccessToken();
                 return fetch(`https://api.spotify.com/v1/users/${usersId}/playlists`,
 
-                        {
-                            method: "GET",
-                            headers: {
-                                Authorization: `Bearer ${accessToken}`
-                            },
+                    {
+                        method: "GET",
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`
+                        },
 
-                        }
-                    )
+                    }
+                )
                     .then(response => {
 
                         return response.json()
@@ -149,26 +160,26 @@ const Spotify = {
     },
 
     getPlaylist(id) {
-       
+
         let userId = Spotify.getCurrentUserId();
 
         const accessToken = Spotify.getAccessToken();
         return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`, {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${accessToken}`
-                }
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${accessToken}`
             }
+        }
 
         )
 
-        .then(jsonResponse => {
+            .then(jsonResponse => {
                 let Json = jsonResponse.json();
                 return Json
             })
             .then(data => {
 
-               // console.log(data.items)
+                // console.log(data.items)
                 return data.items
             })
 
